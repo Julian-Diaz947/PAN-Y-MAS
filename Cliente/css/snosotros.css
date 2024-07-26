@@ -1,0 +1,214 @@
+body{
+    background-image: url(../sobre_nosotros/s-nosotoros-img/img_sn.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.head{
+    height: 100%;
+    width: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin: 0px;
+    padding: 10px;
+}
+.logocorp{
+    background-image: url(../logo/logo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px;
+    height: 209px;
+    margin: 0%;
+    padding: 0px;
+}
+.navegacion{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.ul{
+    display:flex;
+    width: 100%;
+    height: 40px;
+    justify-content: space-around;
+    text-decoration: none;
+    list-style: none;
+    margin-top: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: gold;
+}
+a{
+    text-decoration: none;
+    color: gold;
+    padding: 0 15px;
+    font-style: italic;
+}
+.sec{
+    width: 100%;
+    height: 950px;
+    display:flex;
+    flex-wrap: wrap;
+}
+.sec1{
+    width: 50%;
+    height: 800px;
+    display:flex;
+    flex-wrap: wrap;
+}
+.ar1{
+    width: 100%;
+    height: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 60px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.651);
+    border-radius: 8px 8px 8px 8px;
+}
+.titulo1{
+    width: 100%;
+    height: 26px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: gold;
+}
+.text1{
+    width: 85%;
+    height: 200px;
+    font-style:italic;
+    font-size: 23px;
+    display: flex;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px;
+    color: gold;
+   
+}
+.titulo2{
+    width: 100%;
+    height: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: gold;
+}
+.text2{
+    width: 85%;
+    height: 250px;
+    font-style:italic;
+    font-size: 23px;
+    padding: 10px;
+    margin-top: 0px;
+    color: gold;
+    margin-left: 5px;
+    text-align: center;
+}
+.sec2{
+    width: 50%;
+    height: 875px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: end;
+}
+.ar2{
+    width: 80%;
+    height: 400px;
+    display: flex;
+    margin-right: 10px;
+    flex-wrap: wrap;
+    justify-content:space-between;
+}
+.contenedor{
+    background-color: rgba(0, 0, 0, 0.651);
+    width: 46%;
+    height: 170px;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 10px 10px 10px 10px;
+}
+.fi{
+    color: gold;
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
+}
+h2{
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    color: gold;
+}
+p{
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    color: gold;
+}
+.ar3{
+    width: 80%;
+    height: 350px;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    flex-wrap: wrap;
+    margin-right: 10px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.651);
+    border-radius: 8px 8px 8px 8px;
+}
+.form1{
+    width: 99%;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+}
+[type="email"]{
+    background-color: rgb(0, 0, 0);
+    width: 50%;
+    height: 40px;
+    margin: 7px;
+    border-radius: 3px 3px 3px 3px;
+    border: solid gold 1px;
+    color: aliceblue;
+}
+[type="text"]{
+    background-color: rgb(0, 0, 0);
+    width: 50%;
+    height: 40px;
+    margin: 7px;
+    border-radius: 3px 3px 3px 3px;
+    border: solid gold 1px;
+    color: aliceblue;
+}
+.form2{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+textarea{
+    border-radius: 3px 3px 3px 3px;;
+    color:black;
+}
+[type="submit"]{
+    background-color: rgb(0, 0, 0);
+    width: 30%;
+    height: 38px;
+    border-radius: 5px 5px 5px 5px;
+    border: solid gold 1px;
+    margin-top: 30px;
+    color: gold;
+}

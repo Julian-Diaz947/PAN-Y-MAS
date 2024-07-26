@@ -1,0 +1,271 @@
+body{
+    background-color:rgb(0, 0, 0);
+   display: flex;
+    margin: 0px;
+    padding: 0px;
+}
+.head{
+   
+    height: 100%;
+    width: 80%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin: 0px;
+    padding: 10px;
+}
+.logocorp{
+    background-image: url(../Cliente/logo/logo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px;
+    height: 209px;
+    margin: 0%;
+    padding: 0px;
+}
+.navegacion{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.ul{
+    display:flex;
+    width: 100%;
+    height: 40px;
+    justify-content: space-around;
+    text-decoration: none;
+    list-style: none;
+    margin-top: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: gold;
+}
+a{
+    text-decoration: none;
+    color: gold;
+    padding: 0 15px;
+    font-style: italic;
+}
+.sec2{
+    
+    border: solid gold 1px;
+    border-radius: 8px 8px 8px 8px;
+    width: 19%;
+    height:auto;
+    margin: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+    box-sizing: border-box;
+}
+.logo{
+    background-color: rgb(211, 226, 43);
+}
+.navegacion2{
+   
+    display: flex;
+    flex-direction: column;
+    padding:0px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.olvido{
+    
+    width: 90%;
+    height: 37px;
+    display: flex;
+    justify-content: center;
+    font-size: 23px;
+}
+form{
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding:0px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+form input{
+  margin: 20px;
+  background-color: rgb(253, 253, 253);
+  width:90% ;
+  height: 40px;
+  border-radius: 5px 5px 5px 5px;
+  border: solid 2px gold;
+  color: rgb(0, 0, 0);
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+}
+
+.ul2{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    padding: 0px;
+}
+.l1{
+    text-align: center;
+    justify-content: center;
+    height:50px;
+    width: 98%;
+    color:gold;
+    font-style: italic;
+}
+
+[type=submit]{
+    background-color: black;
+    width:60% ;
+    height: 40px;
+    border-radius: 5px 5px 5px 5px;
+    margin-left:1px;
+    border: solid 2px gold;
+    color: gold;
+    font-style: italic;
+}
+.l2{
+    width: 100%;
+    min-width: 10%;
+    height: 50px;
+    font-size: 23px;
+}
+.material-symbols-outlined {
+    width: 100%;
+   font-size: 100px;
+   color: gold;
+   align-self: flex-end;
+   display: flex;
+   justify-content: center;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 70,
+  'GRAD' 0,
+  'opsz' 24
+}
+p{
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+}
+.gsi-material-button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: #131314;
+  background-image: none;
+  border: 1px solid #eafa02;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #e3e3e3;
+  cursor: pointer;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  max-width: 40px;
+  min-width: min-content;
+  border-color: #ffff05;
+}
+
+.gsi-material-button .gsi-material-button-icon {
+  height: 20px;
+  margin-right: 12px;
+  min-width: 20px;
+  width: 20px;
+}
+
+.gsi-material-button .gsi-material-button-content-wrapper {
+  -webkit-align-items: center;
+  align-items: center;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.gsi-material-button .gsi-material-button-contents {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  font-family: 'Roboto', arial, sans-serif;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.gsi-material-button .gsi-material-button-state {
+  -webkit-transition: opacity .218s;
+  transition: opacity .218s;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gsi-material-button:disabled {
+  cursor: default;
+  background-color: #13131461;
+  border-color: #8e918f1f;
+}
+
+.gsi-material-button:disabled .gsi-material-button-state {
+  background-color: #e3e3e31f;
+}
+
+.gsi-material-button:disabled .gsi-material-button-contents {
+  opacity: 38%;
+}
+
+.gsi-material-button:disabled .gsi-material-button-icon {
+  opacity: 38%;
+}
+
+.gsi-material-button:not(:disabled):active .gsi-material-button-state, 
+.gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+  background-color: white;
+  opacity: 12%;
+}
+
+.gsi-material-button:not(:disabled):hover {
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+  background-color: white;
+  opacity: 8%;
+}
+h1{
+    color: gold;
+    font-style: italic;
+}
+
+

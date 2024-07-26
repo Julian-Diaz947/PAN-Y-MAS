@@ -1,0 +1,144 @@
+.s-principal{
+    width: 100%;
+    height: 400px;
+    margin-top: 6rem;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    justify-content:space-between;
+}
+.ar-cont1{
+    width: 56%;
+    height: auto;
+   display: flex;
+   flex-direction: column;
+}
+.ic-cerrar i{
+    height: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    font-size: 30px;
+    margin-top: 5px;
+    color: white;
+}
+.ic-cerrar {
+    background-color: transparent;
+    border: transparent;
+}
+.cont-1{
+    width: 100%;
+    height: 134px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.p-imgs{
+    width: 30%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid gold 1px;
+    border-radius: 5px;
+}
+.imgs{
+    width: 79%;
+    height: 95px;
+    background-image: url(../productos/imgs/croasant.jpg);
+    background-repeat: no-repeat;
+    background-size:15rem;
+    display: flex;
+    justify-content: center;
+    margin: 8px;
+    align-items: center;
+    border-radius: 5px;
+    background-position: -20px ;
+}
+.des{
+    width: 30%;
+    height: 120px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 19px;
+}
+.preci{
+    width: 30%;
+    height: 80;
+    display: flex;
+    flex-wrap: wrap;
+}
+.sub-ar{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    margin: 0;
+}
+
+hr{
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+    margin-bottom: 10px;
+}
+.n-cantidad{
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+[type="number"]{
+    width: 30%;
+    height: 25px;
+    border-radius: 5px;
+    border: solid gold 1px;
+}
+.vr-pagar{
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+p{
+    margin: 0;
+}
+h2{
+    font-size: 30px;
+    font-style: italic;
+}
+.ar-cont2{
+    width: 34%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.texto{
+    width: 100%;
+    height: 171px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    text-align: center;
+}
+.texto p{
+    margin: 13px;
+}
+.compra{
+    width: 100%;
+    height: 80px;
+}
+[type="submit"]{
+    width: 30%;
+    height: 50px;
+    margin: 5px;
+    background-color: gold;
+    border-radius: 5px;
+
+}
+p{
+    font-size: 18px;
+}

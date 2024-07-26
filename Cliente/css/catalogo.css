@@ -1,0 +1,482 @@
+body{
+    background-color: rgb(0, 0, 0);
+    margin: 0px;
+    height: auto;
+}
+.head{
+    height: 170px;
+    width: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    margin: 0px;
+}
+
+.logocorp{
+    background-image: url(../logo/logo.png);
+    background-repeat: no-repeat;
+    background-size: 169px;
+    width: 180px;
+    height: 175px;
+    margin: 0%;
+}
+.nav{
+    display: flex;
+    width: 91%;
+    height: 50px;
+    justify-content: center;
+    margin-top: 20px;
+}
+i{
+    font-size: 70px;
+   
+    width: 100%;
+    color: gold;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+}
+.ul{
+    display:flex;
+    width: 80%;
+    height: 40px;
+    justify-content: space-around;
+    text-decoration: none;
+    list-style: none;
+    margin-top:0px;
+    margin-top: 5px;
+}
+a{
+    color: gold;
+    font-style: italic;
+    text-decoration: none;
+}
+.ar0{
+    width: 5%;
+    height: auto;
+    display: flex;
+   flex-direction: column;
+}
+
+.ar1{
+    width:auto;
+    height:70px;
+    cursor: pointer;
+    background-color:transparent;
+    border: 0;
+
+}
+i{
+    color: rgb(252, 252, 12);
+    font-size: 3rem;
+}
+.navse{
+    background-color:gold;
+    width: 20%;
+    height: auto;
+    position: absolute;
+    margin-top: 4rem;
+    right:1rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    border-radius: 5px;
+}
+h3{
+    display: flex;
+    justify-content: center;
+    font-family:sans-serif;
+}
+.navse.mostrar{
+    visibility: visible;
+}
+.ar2{
+    width: 20%;
+    height: auto;
+    background-color: transparent;
+    border: solid transparent;
+    display: flex;
+}
+.ar2 i{
+    height: 20px;
+    font-size: 20px;
+    color: black;
+}
+.nav-con{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+}
+.nav-con a{
+    color: black;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+.material-symbols-outlined {
+    width: 100%;
+    font-size: 62px;
+    color: gold;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 70,
+  'GRAD' 0,
+  'opsz' 24,
+}
+.p1{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 100px;
+}
+.cont-catalogo {
+    width: 86%;
+    height: auto;
+    display: flex;
+    font-size: 1rem;
+    flex-wrap: wrap;
+}
+.produc{
+    border: solid 1px gold;
+    border-radius: 9px 9px 9px 9px;
+    width: 28%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+.carro{
+    width: 8%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+}
+.contenido{
+    width: 30rem;
+    height:806px;
+    right: 0.04rem;
+    position: absolute;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    top: 16.9rem;
+    justify-content: flex-start; 
+    background-color: aliceblue;
+}
+.ic-carrito{
+ background-color: transparent;
+    height: 60px;
+    width: 30%;
+    display: flex;
+    justify-content: end;
+    top: 30rem;
+    border: solid transparent;
+}
+.ic-carrito i{
+    color: yellow;
+    height: auto;
+}
+.catalogo{
+    width: 100%;
+    height: auto;
+    justify-content: center;
+}
+.contenido.ver{
+    visibility: visible;
+}
+.cont{
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin: 0;
+    padding: 8px;
+}
+.descrp{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.tit-icon{
+    width: 100%;
+    height: auto;
+    background-color: gold;
+    display: flex;
+}
+.desh4{
+    text-align: center;
+    margin-top: 0;
+}
+.precio-sub{
+    text-align: center;
+    margin: 5px;
+}
+label{
+    width: auto;
+    height: auto;
+}
+.titulo-car{
+    text-align: center;
+    font-size: 30px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    
+    margin: 0;
+    width: 86%;
+    align-items: center;
+}
+.icon-x{
+    width: 15%;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+}
+.icon-x i{
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    
+    width: auto;
+    height: auto;
+    margin: 4px;
+}
+hr{
+    color: rgb(0, 0, 0);
+    width: 100%;
+    margin: 2px;
+}
+.sub-t{
+  
+    width: 100%;
+    height: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 360px;
+}
+.sh2{
+    font-size: 40px;
+    margin-top: 0;
+    text-align: center;
+    margin: 0;
+}
+.precio{
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+}
+.interfz-carro{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+   
+}
+.boton-carro{
+    width: 30%;
+    height: 50px;
+    border-radius: 5px;
+    margin: 1rem;
+    border: solid rgb(6, 6, 6) 1px;
+    background-color:gold;
+}
+
+[type="number"]{
+    background-color:rgb(253, 253, 253);
+    width: 20%;
+    height: 30px;
+    border-radius:9px 9px 9px 9px;
+    border: solid rgb(0, 0, 0) 1px;
+    color: rgb(0, 0, 0);
+}
+.imgcar{
+    width: 70%;
+    height: 140px;
+    background-image: url(../productos/imgs/croasant.jpg);
+    background-repeat: no-repeat;
+    background-size: 15rem;
+    margin-top: 11px;
+    border-radius: 5px;
+}
+
+.img1{
+    background-image: url(../productos/imgs/pan\ grande.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    width: 70%;
+    height: 150px;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 39px;
+}
+.img2{
+    background-image: url(../productos/imgs/croasant.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70%;
+    height: 150px;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 39px;
+}
+.img3{
+    background-image: url(../productos/imgs/pastel.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70%;
+    height: 150px;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 39px;
+}
+.img4{
+    background-image: url(../productos/imgs/tamal.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70%;
+    height: 150px;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 39px;
+}
+.img5{
+    background-image: url(../productos/imgs/leche\ asada.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70%;
+    height: 150px;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 39px;
+}
+.img6{
+    background-image: url(../productos/imgs/galletas.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 70%;
+    height: 155px;
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 39px;
+}
+.subtitulo{
+    color: gold;
+    font-style: italic;
+    width: 80%;
+    height: 30px;
+    text-align: center;
+
+}
+.a{
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+[type="button"]{
+    background-color: black;
+    width: 70%;
+    height: 40px;
+    border-radius:9px 9px 9px 9px;
+    border: solid gold 1px;
+    color: gold;
+}
+.ab-nav{
+    display: none;
+}
+.cr-nav{
+    display: none;
+}
+@media screen and (Max-width:550px) {
+   .ab-nav,.cr-nav{
+    display: block;
+    border: 0;
+    height: 3rem; 
+    cursor: pointer;
+    background-color:rgba(0, 0, 0, 0);
+   }
+   .ab-nav{
+    color:gold;
+   }
+   
+    .nav{
+        position: absolute;
+        display: flex;
+        flex-direction:row;
+        justify-content: center;
+        width: auto ;
+        height: 10rem;
+        background-color: rgba(248, 240, 2, 0.556);
+        margin:0.25rem;
+        text-align: center;
+        margin-top: 2rem;
+        right:2;
+        box-shadow:0 0 0 10vmax  rgba(212, 223, 219, 0.785);
+    }
+    .nav{
+        visibility:hidden;
+    }
+    .head{
+        display: flex;
+        background-color: violet;
+        padding: 0;
+        height: auto;
+        gap: 0.55rem;
+    }
+
+    i{
+      width: auto;
+      font-size: 2rem;  
+      height: auto;
+    }
+    .ul{
+        gap: 1rem;
+        flex-direction: column;
+       display: flex;
+       justify-content: center;
+       margin: 1rem;
+       margin-top: 2rem;
+       padding: 1rem;  
+    }
+    .p1{
+        background-color: yellowgreen;
+        justify-content: center;
+        display: flex;
+        flex-direction:column ;
+        height: auto;
+    }
+    .produc{
+        display: flex;
+        background-color: blueviolet;
+        width: 15rem;
+    }
+    .ar1{
+        background-color: rgb(1, 1, 1);
+        width: auto;
+        height: auto;
+    }
+    .contenedor-log{
+        background-color: blue;
+        height: 6rem;
+        width: 4rem;
+    }
+    .logocorp{
+        background-size: 4rem;
+        
+    }
+    .cr-nav{
+        color: rgb(29, 183, 119);
+    }
+    .nav.visible{
+        opacity: 1;
+        visibility: visible;
+    }
+   
+}
