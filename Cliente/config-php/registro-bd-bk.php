@@ -1,4 +1,5 @@
 <?php 
+session_start(); // Iniciar sesión
 include 'conexion-bd.php'; // Incluir el archivo de conexión a la base de datos
 
 // Obtener datos del formulario usando el método POST
@@ -15,14 +16,15 @@ $contrasena = $_POST['contrasena'];
 $contrasena = hash('sha512', $contrasena);
 
 // Preparar la consulta SQL para insertar los datos en la tabla 'cliente'
-$query = "INSERT INTO cliente (nombres, apellidos, n_documento, direccion, municipio, celular, correo, contrasena) 
-          VALUES ('$nombres', '$apellidos', '$n_documento', '$direccion', '$municipio', '$celular', '$correo', '$contrasena')";
+$query = $conexion->prepare("INSERT INTO cliente (nombres, apellidos, n_documento, direccion, municipio, celular, correo, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-// Ejecutar la consulta SQL
-$ejecutar = mysqli_query($conexion, $query);
+// Bind de parámetros para evitar inyecciones SQL
+$query->bind_param("ssssssss", $nombres, $apellidos, $n_documento, $direccion, $municipio, $celular, $correo, $contrasena);
 
-// Comprobar si la consulta se ejecutó correctamente
-if ($ejecutar) {
+// Ejecutar la consulta SQL y comprobar si se ejecutó correctamente
+if ($query->execute()) {
+    // Establecer la variable de sesión
+    $_SESSION['cliente'] = $correo; // Usar el correo como identificador de sesión
     echo '
     <script>
     alert("Usuario registrado correctamente");
@@ -39,5 +41,6 @@ if ($ejecutar) {
 }
 
 // Cerrar la conexión a la base de datos
-mysqli_close($conexion);
+$query->close();
+$conexion->close();
 ?>

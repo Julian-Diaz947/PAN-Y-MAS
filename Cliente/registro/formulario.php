@@ -32,22 +32,22 @@ if(isset($_SESSION['cliente'])){
      <section class="sec1">
         <article class="formulario" id="formulario">
             <form action="../config-php/registro-bd-bk.php" method="POST">
-                 <input type="text" name="nombres" placeholder="NOMBRES" required>
-                 <input type="text"name="apellidos" placeholder="APELLIDOS" required>
-                <select class="tidoc" name="tipo-de-documento" id="" >
+                 <input type="text" id="nombres" name="nombres" placeholder="NOMBRES" required>
+                 <input type="text" id="apellidos" name="apellidos" placeholder="APELLIDOS" required>
+                <select class="tidoc" name="tipo-de-documento"  >
                     <option value="">Seleccione su documento</option>
                     <option value="CC">Cédula de Ciudadanía</option>
                     <option value="TI">Targeta de Identidad</option>
                     <option value="CE">Cédula de Extrangería</option>
                 </select>
-                    <input type="text" name="n_documento" placeholder="NUMERO DE DOCUMENTO" id="">
-                    <input type="number"id="" name="celular" placeholder="NUMERO DE CELULAR" required>
+                    <input type="text" id="ndocumento" name="n_documento" placeholder="NUMERO DE DOCUMENTO">
+                    <input type="number"id="ncelular" name="celular" placeholder="NUMERO DE CELULAR" required>
                     <input type="text"id="direccion" name="direccion" placeholder="DIRECCION" required>
-                    <input type=""id=""name="municipio" placeholder="MUNICIPIO" required >
+                    <input type=""id="municipio"name="municipio" placeholder="MUNICIPIO" required >
                     <input type="email"id="" name="correo" placeholder="CORREO ELECTRONICO" required>
-                    <input type="password"id="" name="contrasena" placeholder="CONTRASEÑA" required>
+                    <input type="password"id="contraseña" name="contrasena" placeholder="CONTRASEÑA" required>
                     <!--falta codigo parar verificar que juntas contraseñas sean iguales-->
-                    <input type="password" id="" name="contrasena" placeholder=" CONFIRMAR CONTRASEÑA" required>
+                    <input type="password" id="vcontraseña" name="contrasena" placeholder=" CONFIRMAR CONTRASEÑA" required>
                    <div class="condiciones">
                     <p class="p">Autoriza el tratamiento de sus datos </p> 
                     <input type="checkbox" id="autorizacion" required>

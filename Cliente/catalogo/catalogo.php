@@ -1,16 +1,18 @@
 <?php 
-  session_start();
-  if(!isset($_SESSION['cliente'])){
-    echo'
-       <script>
-          alert("Por favor inicia sesion");
-          window.location="../inicio.php"
-       </script>
+session_start();
+if (!isset($_SESSION['cliente'])) {
+    echo '
+    <script>
+        alert("Por favor inicia sesión");
+        window.location="../inicio.php";
+    </script>
     ';
     session_destroy();
     die();
-  }
+}
 ?>
+<!-- Aquí puedes colocar el contenido del catálogo -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,7 +29,6 @@
         <nav class="nav "  id="nav">
             <button id="crnav" class="cr-nav"><i class="bi bi-x-circle"></i></button>
             <ul class="ul">
-                <li><a href="../catalogo/catalogo.php">INICIO</a></li>
                 <li><a class="pedidos" onclick="pedidos()" id="pedido1">PEDIDOS ONLINE</a></a></li>
                 <li><a class="nosotros" id="snosotros" href="../sobre_nosotros/snosotros.php">SOBRE NOSOTROS</a></li>
             </ul>
