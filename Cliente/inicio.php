@@ -68,6 +68,5 @@
 
         </article>
     </section>
-    <script src="/js-inicio/inicio scrip.js"></script>
 </body>
 </html>

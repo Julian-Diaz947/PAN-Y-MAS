@@ -1,46 +1,92 @@
-<?php 
-session_start(); // Iniciar sesión
-include 'conexion-bd.php'; // Incluir el archivo de conexión a la base de datos
-
-// Obtener datos del formulario usando el método POST
-$nombres = $_POST['nombres'];
-$apellidos = $_POST['apellidos'];
-$n_documento = $_POST['n_documento'];
-$direccion = $_POST['direccion'];
-$municipio = $_POST['municipio'];
-$celular = $_POST['celular'];
-$correo = $_POST['correo'];
-$contrasena = $_POST['contrasena'];
-
-// Cifrar la contraseña usando SHA-512
-$contrasena = hash('sha512', $contrasena);
-
-// Preparar la consulta SQL para insertar los datos en la tabla 'cliente'
-$query = $conexion->prepare("INSERT INTO cliente (nombres, apellidos, n_documento, direccion, municipio, celular, correo, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-
-// Bind de parámetros para evitar inyecciones SQL
-$query->bind_param("ssssssss", $nombres, $apellidos, $n_documento, $direccion, $municipio, $celular, $correo, $contrasena);
-
-// Ejecutar la consulta SQL y comprobar si se ejecutó correctamente
-if ($query->execute()) {
-    // Establecer la variable de sesión
-    $_SESSION['cliente'] = $correo; // Usar el correo como identificador de sesión
-    echo '
-    <script>
-    alert("Usuario registrado correctamente");
-    window.location = "../catalogo/catalogo.php";
-    </script>
-    ';
-} else {
-    echo '
-    <script>
-    alert("Usuario no registrado, intente de nuevo");
-    window.location = "registro/formulario.php";
-    </script>
-    ';
+<?php
+// Evita iniciar la sesión en el entorno de pruebas (CLI)
+if (php_sapi_name() !== 'cli') {
+    session_start();
 }
 
-// Cerrar la conexión a la base de datos
-$query->close();
-$conexion->close();
+// Omite la inclusión de la conexión a la base de datos en el entorno de pruebas (CLI)
+if (php_sapi_name() !== 'cli') {
+    require_once 'conexion-bd.php';
+}
+
+// Clase para manejar el registro de usuarios
+class UserRegistration {
+    private $db;
+    private $isTestingEnvironment;
+
+    // Constructor que recibe una instancia de la base de datos y un indicador del entorno de pruebas
+    public function __construct($conexion, $isTestingEnvironment = false) {
+        $this->db = $conexion;
+        $this->isTestingEnvironment = $isTestingEnvironment;
+    }
+
+    // Método para registrar un nuevo usuario
+    public function registerUser($userData) {
+        // Verifica que las contraseñas coincidan
+        if (!$this->validatePasswords($userData['contrasena'], $userData['rcontrasena'])) {
+            $this->showAlert("Las contraseñas no coinciden. Por favor, inténtelo de nuevo.",
+             "../registro/formulario.php");
+            return false;
+        }
+
+        // Hashea la contraseña
+        $hashedPassword = $this->hashPassword($userData['contrasena']);
+        
+        // Inserta el usuario en la base de datos
+        if ($this->insertUser($userData, $hashedPassword)) {
+            // Si no es entorno de pruebas, guarda el correo en la sesión
+            if (!$this->isTestingEnvironment) {
+                $_SESSION['cliente'] = $userData['correo'];
+            }
+            // Muestra un mensaje de éxito y redirige
+            $this->showAlert("Usuario registrado correctamente", "../catalogo/catalogo.php");
+            return true;
+        } else {
+            // Muestra un mensaje de error y redirige
+            $this->showAlert("Usuario no registrado, intente de nuevo", "../registro/formulario.php");
+            return false;
+        }
+    }
+
+    // Método privado para validar que las contraseñas coincidan
+    private function validatePasswords($password, $confirmPassword) {
+        return $password === $confirmPassword;
+    }
+
+    // Método privado para hashear la contraseña usando SHA-512
+    private function hashPassword($password) {
+        return hash('sha512', $password);
+    }
+
+    // Método privado para insertar un nuevo usuario en la base de datos
+    private function insertUser($userData, $hashedPassword) {
+        $query = $this->db->prepare("INSERT INTO cliente (nombres, apellidos, n_documento,
+        direccion, municipio, celular, correo, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->bind_param("ssssssss", $userData['nombres'],$userData['apellidos'], $userData['n_documento'],
+        $userData['direccion'],$userData['municipio'],$userData['celular'], $userData['correo'], $hashedPassword);
+        $result = $query->execute();
+        $query->close();
+        return $result;
+    }
+
+    // Método privado para mostrar una alerta y redirigir al usuario
+    private function showAlert($message, $location) {
+        if ($this->isTestingEnvironment) {
+            return; // No hacer nada en el entorno de pruebas
+        }
+        echo "<script>
+            alert('$message');
+            window.location = '$location';
+        </script>";
+        exit();
+    }
+}
+
+// Lógica para manejar el registro de usuario desde un formulario POST, fuera de la clase
+if (php_sapi_name() !== 'cli' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Se crea una instancia de UserRegistration
+    $userRegistration = new UserRegistration($conexion);
+    // Se llama al método registerUser para registrar al usuario
+    $userRegistration->registerUser($_POST);
+}
 ?>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="utf-8" />
@@ -43,7 +43,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <!--<div class="small"><a href="register.html">Need an account? Sign up!</a></div>-->
+                                        <div class="small"><a href="register.php">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
                             </div>

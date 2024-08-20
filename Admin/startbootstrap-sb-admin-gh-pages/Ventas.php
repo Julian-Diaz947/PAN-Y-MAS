@@ -1,16 +1,58 @@
-<?php 
-  session_start();
-  if(!isset($_SESSION['empleado'])){
-    echo'
-       <script>
-          alert("Por favor inicia sesion");
-          window.location="login.php"
-       </script>
-    ';
-    session_destroy();
-    die();
-  }
+<?php
+// sessionManager.php
+
+class SessionManager {
+    public function __construct() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function isEmployeeLoggedIn() {
+        return isset($_SESSION['empleado']);
+    }
+
+    public function destroySession() {
+        session_destroy();
+    }
+}
+
+// authenticationHandler.php
+
+class AuthenticationHandler {
+    private $sessionManager;
+
+    public function __construct(SessionManager $sessionManager) {
+        $this->sessionManager = $sessionManager;
+    }
+
+    public function checkAuthentication() {
+        if (!$this->sessionManager->isEmployeeLoggedIn()) {
+            $this->handleUnauthenticatedAccess();
+            return false;
+        }
+        return true;
+    }
+
+    private function handleUnauthenticatedAccess() {
+        $this->sessionManager->destroySession();
+        return $this->getRedirectScript();
+    }
+
+    private function getRedirectScript() {
+        return '
+        <script>
+            alert("Por favor inicia sesión");
+            window.location = "login.php";
+        </script>
+        ';
+    }
+}
+$sessionManager = new SessionManager();
+$authHandler = new AuthenticationHandler($sessionManager);
+$authHandler->checkAuthentication();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -80,6 +122,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Ventas
                             </a>
+                            <a class="nav-link" href="usuarios.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Usuarios
+                        </a>
                            <!-- <div class="sb-sidenav-menu-heading">Interface</div>-->
                             <!--<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -149,6 +195,7 @@
                                 <th>Cantidad vendida</th>
                                 <th>Precio unitario</th>
                                 <th>Precio total</th>
+                                <th>Acciones</th>
                                </tr>
                                <tr>
                                 <td>1.006</td>
@@ -157,6 +204,10 @@
                                 <td>50</td>
                                 <td>$4.000</td>
                                 <td>$200.000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
 
                                <tr>
@@ -166,6 +217,10 @@
                                 <td>200</td>
                                 <td>$1.000</td>
                                 <td>$200.000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
 
                                <tr>
@@ -175,6 +230,10 @@
                                 <td>100</td>
                                 <td>$1.000</td>
                                 <td>$100.000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
 
                                <tr>
@@ -184,8 +243,14 @@
                                 <td>700</td>
                                 <td>$400</td>
                                 <td>$280.000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Entrada</a></div>
                            </article>
 
                            <h3>Ventas de la semana</h3>
@@ -197,6 +262,7 @@
                                     <th>Cantidad vendida</th>
                                     <th>Precio unitario</th>
                                     <th>Precio total</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 <tr>
                                     <td>Pan grande</td>
@@ -204,6 +270,10 @@
                                     <td>400</td>
                                     <td>$4.000</td>
                                     <td>$1´600.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -212,6 +282,10 @@
                                     <td>1.000</td>
                                     <td>$1.000</td>
                                     <td>$1´000.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -220,6 +294,10 @@
                                     <td>900</td>
                                     <td>$1.000</td>
                                     <td>$900.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -228,8 +306,14 @@
                                     <td>1.500</td>
                                     <td>$400</td>
                                     <td>$600.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Entrada</a></div>
                            </article>
                            <h3>Ventas del mes</h3>
                            <article class="table">
@@ -240,6 +324,7 @@
                                     <th>Cantidad vendida</th>
                                     <th>Precio unitario</th>
                                     <th>Precio total</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 <tr>
                                     <td>Pan grande</td>
@@ -247,6 +332,10 @@
                                     <td>900</td>
                                     <td>$4.000</td>
                                     <td>$3´600.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -255,6 +344,10 @@
                                     <td>7.000</td>
                                     <td>$1.000</td>
                                     <td>$7´000.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -263,6 +356,10 @@
                                     <td>4.000</td>
                                     <td>$1.000</td>
                                     <td>$4´000.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -271,8 +368,14 @@
                                     <td>15.000</td>
                                     <td>$400</td>
                                     <td>$6´000.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Entrada</a></div>
                            </article>
                     </div>
                 </main>

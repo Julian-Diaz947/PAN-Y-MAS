@@ -1,11 +1,59 @@
-<?php 
-session_start();
+<?php
+// sessionManager.php
 
-if(isset($_SESSION['empleado'])){
-    header('../login.php');
+class SessionManager {
+    public function __construct() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function isEmployeeLoggedIn() {
+        return isset($_SESSION['empleado']);
+    }
+
+    public function destroySession() {
+        session_destroy();
+    }
 }
 
+// authenticationHandler.php
+
+class AuthenticationHandler {
+    private $sessionManager;
+
+    public function __construct(SessionManager $sessionManager) {
+        $this->sessionManager = $sessionManager;
+    }
+
+    public function checkAuthentication() {
+        if (!$this->sessionManager->isEmployeeLoggedIn()) {
+            $this->handleUnauthenticatedAccess();
+            return false;
+        }
+        return true;
+    }
+
+    private function handleUnauthenticatedAccess() {
+        $this->sessionManager->destroySession();
+        return $this->getRedirectScript();
+    }
+
+    private function getRedirectScript() {
+        return '
+        <script>
+            alert("Por favor inicia sesión");
+            window.location = "login.php";
+        </script>
+        ';
+    }
+}
+
+$sessionManager = new SessionManager();
+$authHandler = new AuthenticationHandler($sessionManager);
+$authHandler->checkAuthentication();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -56,7 +104,7 @@ if(isset($_SESSION['empleado'])){
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" name="contrasena" id="" type="password" placeholder="Confirm password" required />
+                                                        <input class="form-control" name="rcontrasena" id="" type="password" placeholder="Confirm password" required />
                                                         <label for="inputPasswordConfirm">Confirmar Contraseña</label>
                                                     </div>
                                                 </div>

@@ -169,6 +169,16 @@ form{
     flex-direction: column;
     justify-content: center;
 }
+.error{
+    color: rgb(255, 2, 2);
+   
+    height: 40px;
+    margin-top: 2rem;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .p{
     color: gold;
     width: 100%;

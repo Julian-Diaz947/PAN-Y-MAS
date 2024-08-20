@@ -1,18 +1,58 @@
-<?php 
-session_start();
-if (!isset($_SESSION['cliente'])) {
-    echo '
-    <script>
-        alert("Por favor inicia sesión");
-        window.location="../inicio.php";
-    </script>
-    ';
-    session_destroy();
-    die();
-}
-?>
-<!-- Aquí puedes colocar el contenido del catálogo -->
+<?php
+// sessionManager.php
 
+class SessionManager {
+    public function __construct() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function isEmployeeLoggedIn() {
+        return isset($_SESSION['cliente']);
+    }
+
+    public function destroySession() {
+        session_destroy();
+    }
+}
+
+// authenticationHandler.php
+
+class AuthenticationHandler {
+    private $sessionManager;
+
+    public function __construct(SessionManager $sessionManager) {
+        $this->sessionManager = $sessionManager;
+    }
+
+    public function checkAuthentication() {
+        if (!$this->sessionManager->isEmployeeLoggedIn()) {
+            $this->handleUnauthenticatedAccess();
+            return false;
+        }
+        return true;
+    }
+
+    private function handleUnauthenticatedAccess() {
+        $this->sessionManager->destroySession();
+        return $this->getRedirectScript();
+    }
+
+    private function getRedirectScript() {
+        return '
+        <script>
+            alert("Por favor inicia sesión");
+            window.location = "../inicio.php";
+        </script>
+        ';
+    }
+}
+
+$sessionManager = new SessionManager();
+$authHandler = new AuthenticationHandler($sessionManager);
+$authHandler->checkAuthentication();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "classmap": [
+            "PAN-Y-MAS/"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "11"
+    }
+}

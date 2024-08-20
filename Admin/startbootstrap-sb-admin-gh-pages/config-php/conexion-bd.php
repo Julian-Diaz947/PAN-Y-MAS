@@ -1,9 +1,10 @@
 <?php 
-$conexion= mysqli_connect("Localhost","root","","pan_y_mas");
-/*
-if($conexion){
-    echo'Conetado exitosamente';
-}else{
-    echo'No se pudo conectar a la base de datos XD';
- } */
-?>
+// Establecer conexión a la base de datos
+$conexion = mysqli_connect("localhost", "root", "", "pan_y_mas");
+
+// Verificar si la conexión fue exitosa
+if ($conexion) {
+    echo 'Conectado exitosamente';
+} else {
+    echo 'No se pudo conectar a la base de datos';
+}

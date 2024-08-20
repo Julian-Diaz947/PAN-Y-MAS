@@ -1,15 +1,59 @@
-<?php 
-  session_start();
-  if(!isset($_SESSION['empleado'])){
-    echo'
-       <script>
-          alert("Por favor inicia sesion");
-          window.location="login.php"
-       </script>
-    ';
-    session_destroy();
-    die();
-  }
+<?php
+// sessionManager.php
+
+class SessionManager {
+    public function __construct() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function isEmployeeLoggedIn() {
+        return isset($_SESSION['empleado']);
+    }
+
+    public function destroySession() {
+        session_destroy();
+    }
+}
+
+// authenticationHandler.php
+
+class AuthenticationHandler {
+    private $sessionManager;
+
+    public function __construct(SessionManager $sessionManager) {
+        $this->sessionManager = $sessionManager;
+    }
+
+    public function checkAuthentication() {
+        if (!$this->sessionManager->isEmployeeLoggedIn()) {
+            $this->handleUnauthenticatedAccess();
+            return false;
+        }
+        return true;
+    }
+
+    private function handleUnauthenticatedAccess() {
+        $this->sessionManager->destroySession();
+        return $this->getRedirectScript();
+    }
+
+    private function getRedirectScript() {
+        return '
+        <script>
+            alert("Por favor inicia sesión");
+            window.location = "login.php";
+        </script>
+        ';
+    }
+}
+
+$sessionManager = new SessionManager();
+$authHandler = new AuthenticationHandler($sessionManager);
+$authHandler->checkAuthentication();
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -79,6 +123,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Ventas
                             </a>
+                            <a class="nav-link" href="usuarios.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Usuarios
+                        </a>
                            <!-- <div class="sb-sidenav-menu-heading">Interface</div>-->
                             <!--<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -145,23 +193,38 @@
                                     <th>ID</th>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Pan grande</td>
                                     <td>50</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>Pan pequeño</td>
                                     <td>200</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Croasant</td>
                                     <td>100</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Pruducto</a></div>
                            </article>
 
                            <h3>Productos en proceso</h3>
@@ -171,38 +234,65 @@
                                     <th>ID</th>
                                     <th>Producto</th>
                                     <th>Cantidad</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Pan grande</td>
                                     <td>50</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>Pan pequeño</td>
                                     <td>200</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
                                     <td>Croasant</td>
                                     <td>100</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>6</td>
                                     <td>Tamal</td>
                                     <td>50</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>7</td>
                                     <td>Leche asada</td>
                                     <td>50</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>8</td>
                                     <td>Galletas</td>
                                     <td>100</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Pruducto</a></div>
                            </article>
                            <h3>Materias primas utilizadas el día de hoy</h3>
                            <article class="table">
@@ -212,50 +302,81 @@
                                     <th>Producto</th>
                                     <th>Libras</th>
                                     <th>kilos</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 <tr>
                                     <td>100</td>
                                     <td>Harina</td>
                                     <td>110.023</td>
                                     <td>50</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>101</td>
                                     <td>Mantequilla</td>
                                     <td>16.534</td>
                                     <td>7.5</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>102</td>
                                     <td>Queso</td>
                                     <td>22.046</td>
                                     <td>10</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>103</td>
                                     <td>Azúcar</td>
                                     <td>44.092</td>
                                     <td>20</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>104</td>
                                     <td>Café</td>
                                     <td>6.613</td>
                                     <td>3</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>105</td>
                                     <td>Dulce de guayaba</td>
                                     <td>8.818</td>
                                     <td>4</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>106</td>
                                     <td>Sal</td>
                                     <td>22.046</td>
                                     <td>10</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="">Editar</a>
+                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Pruducto</a></div>
                            </article>
                     </div>
                 </main>

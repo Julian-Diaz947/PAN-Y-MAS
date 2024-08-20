@@ -1,15 +1,59 @@
-<?php 
-  session_start();
-  if(!isset($_SESSION['empleado'])){
-    echo'
-       <script>
-          alert("Por favor inicia sesion");
-          window.location="login.php"
-       </script>
-    ';
-    session_destroy();
-    die();
-  }
+<?php
+// sessionManager.php
+
+class SessionManager {
+    public function __construct() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function isEmployeeLoggedIn() {
+        return isset($_SESSION['empleado']);
+    }
+
+    public function destroySession() {
+        session_destroy();
+    }
+}
+
+// authenticationHandler.php
+
+class AuthenticationHandler {
+    private $sessionManager;
+
+    public function __construct(SessionManager $sessionManager) {
+        $this->sessionManager = $sessionManager;
+    }
+
+    public function checkAuthentication() {
+        if (!$this->sessionManager->isEmployeeLoggedIn()) {
+            $this->handleUnauthenticatedAccess();
+            return false;
+        }
+        return true;
+    }
+
+    private function handleUnauthenticatedAccess() {
+        $this->sessionManager->destroySession();
+        return $this->getRedirectScript();
+    }
+
+    private function getRedirectScript() {
+        return '
+        <script>
+            alert("Por favor inicia sesión");
+            window.location = "login.php";
+        </script>
+        ';
+    }
+}
+
+$sessionManager = new SessionManager();
+$authHandler = new AuthenticationHandler($sessionManager);
+$authHandler->checkAuthentication();
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -79,6 +123,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Ventas
                             </a>
+                            <a class="nav-link" href="usuarios.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Usuarios
+                        </a>
                            <!-- <div class="sb-sidenav-menu-heading">Interface</div>-->
                             <!--<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -149,6 +197,7 @@
                                     <th>Cantidad en KG</th>
                                     <th>Fecha </th>
                                     <th>Precio</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 <tr>
                                     <td>1</td>
@@ -158,6 +207,10 @@
                                     <td>150</td>
                                     <td>13/04/2024</td>
                                     <td>523.500</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -168,6 +221,10 @@
                                     <td>80 KG</td>
                                     <td>15/04/2024</td>
                                     <td>10´562.500</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -178,6 +235,10 @@
                                     <td>150 KG</td>
                                     <td>16/04/2024</td>
                                     <td>733.800</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -188,8 +249,14 @@
                                     <td>200 KG</td>
                                     <td>17/04/2024</td>
                                     <td>7´272.000</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Entrada</a></div>
                         </article>
                         <h3>Salida de suministros</h3>
                         <article class="table">
@@ -199,12 +266,17 @@
                                     <th>Producto</th>
                                     <th>Cantidad en KG entregada</th>
                                     <th>Cantidad en LBS entregadas</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 <tr>
                                     <td>1</td>
                                     <td>Harina de trigo</td>
                                     <td>50</td>
                                     <td>11.023</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                                 
                                 <tr>
@@ -212,6 +284,10 @@
                                     <td>Mantequilla</td>
                                     <td>7.5</td>
                                     <td>16..534</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -219,6 +295,10 @@
                                     <td>Azúcar</td>
                                     <td>20</td>
                                     <td>44.092</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -226,6 +306,10 @@
                                     <td>Café</td>
                                     <td>3</td>
                                     <td>6.613</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -233,6 +317,10 @@
                                     <td>Dulce de guayaba</td>
                                     <td>4</td>
                                     <td>8.818</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -240,6 +328,10 @@
                                     <td>Queso</td>
                                     <td>10</td>
                                     <td>22.046</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -247,8 +339,14 @@
                                     <td>Sal</td>
                                     <td>10</td>
                                     <td>22.046</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                 </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar Salida </a></div>
                         </article>
                     </div>
                 </main>

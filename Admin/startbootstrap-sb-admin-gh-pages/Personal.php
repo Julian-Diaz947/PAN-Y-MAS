@@ -1,15 +1,59 @@
-<?php 
-  session_start();
-  if(!isset($_SESSION['empleado'])){
-    echo'
-       <script>
-          alert("Por favor inicia sesion");
-          window.location="login.php"
-       </script>
-    ';
-    session_destroy();
-    die();
-  }
+<?php
+// sessionManager.php
+
+class SessionManager {
+    public function __construct() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function isEmployeeLoggedIn() {
+        return isset($_SESSION['empleado']);
+    }
+
+    public function destroySession() {
+        session_destroy();
+    }
+}
+
+// authenticationHandler.php
+
+class AuthenticationHandler {
+    private $sessionManager;
+
+    public function __construct(SessionManager $sessionManager) {
+        $this->sessionManager = $sessionManager;
+    }
+
+    public function checkAuthentication() {
+        if (!$this->sessionManager->isEmployeeLoggedIn()) {
+            $this->handleUnauthenticatedAccess();
+            return false;
+        }
+        return true;
+    }
+
+    private function handleUnauthenticatedAccess() {
+        $this->sessionManager->destroySession();
+        return $this->getRedirectScript();
+    }
+
+    private function getRedirectScript() {
+        return '
+        <script>
+            alert("Por favor inicia sesión");
+            window.location = "login.php";
+        </script>
+        ';
+    }
+}
+
+$sessionManager = new SessionManager();
+$authHandler = new AuthenticationHandler($sessionManager);
+$authHandler->checkAuthentication();
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -79,6 +123,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Ventas
                             </a>
+                            <a class="nav-link" href="usuarios.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Usuarios
+                        </a>
                            <!-- <div class="sb-sidenav-menu-heading">Interface</div>-->
                             <!--<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -148,6 +196,7 @@
                                 <th>Celular</th>
                                 <th>Correo</th>
                                 <th>Salario</th>
+                                <th>Acciones</th>
                                </tr>
 
                                <tr>
@@ -157,6 +206,10 @@
                                 <td>322222222</td>
                                 <td>juan@hotmail.com</td>
                                 <td>1´800.00</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
 
                                <tr>
@@ -166,6 +219,10 @@
                                 <td>3035555555</td>
                                 <td>carlos@hotmail.com</td>
                                 <td>2´000,000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
 
                                <tr>
@@ -175,6 +232,10 @@
                                 <td>3134444444</td>
                                 <td>sancheszc@otmail.com</td>
                                 <td>1´500,000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
 
                                <tr>
@@ -184,6 +245,10 @@
                                 <td>3176666666</td>
                                 <td>sofia12@hotmail.com</td>
                                 <td>1´7000.000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
 
                                <tr>
@@ -193,8 +258,14 @@
                                 <td>3189993333</td>
                                 <td>leidy145@hotmail.com</td>
                                 <td>2´500.000</td>
+                                <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <a class="btn btn-danger" href="">Eliminar</a>
+                                    </td>
                                </tr>
                             </table>
+                            <br>
+                            <div ><a class="btn btn-success" href ="">Agregar</a></div>
                            </article>
                     </div>
                 </main>
