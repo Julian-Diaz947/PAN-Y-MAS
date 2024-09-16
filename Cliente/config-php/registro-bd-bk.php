@@ -29,6 +29,12 @@ class UserRegistration {
             return false;
         }
 
+        // Verifica si el usuario ya está registrado
+        if ($this->userExists($userData['correo'], $userData['n_documento'])) {
+            $this->showAlert("El usuario ya está registrado", "../registro/formulario.php");
+            return false;
+        }
+
         // Hashea la contraseña
         $hashedPassword = $this->hashPassword($userData['contrasena']);
         
@@ -56,6 +62,17 @@ class UserRegistration {
     // Método privado para hashear la contraseña usando SHA-512
     private function hashPassword($password) {
         return hash('sha512', $password);
+    }
+
+    // Método privado para verificar si el usuario ya existe
+    private function userExists($email, $document) {
+        $query = $this->db->prepare("SELECT * FROM cliente WHERE correo = ? OR n_documento = ?");
+        $query->bind_param("ss", $email, $document);
+        $query->execute();
+        $result = $query->get_result();
+        $exists = $result->num_rows > 0;
+        $query->close();
+        return $exists;
     }
 
     // Método privado para insertar un nuevo usuario en la base de datos

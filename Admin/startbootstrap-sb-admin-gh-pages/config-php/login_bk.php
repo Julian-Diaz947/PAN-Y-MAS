@@ -114,7 +114,7 @@ if (php_sapi_name() !== 'cli') {
             $responseHandler->redirect("../index.php");
         } else {
             // Si la autenticación falla, se muestra un mensaje de alerta y se redirige a la página de login
-            $responseHandler->showAlert("El usuario no existe", "../login.php");
+            $responseHandler->showAlert("Usuario incorrecto o Contraseña incorrecta", "../login.php");
         }
     }
 }

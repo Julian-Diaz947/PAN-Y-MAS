@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" type="text/css" href="http://localhost/PAN-Y-MAS/Cliente/css/catalogo.css">
+    <link rel="stylesheet" type="text/css" href="../css/catalogo.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="../css/pan_grande.css?v=<?php echo time(); ?>">
     <title>PAN Y MAS</title>
 </head>
@@ -18,7 +18,7 @@
              <button id="crnav" class="cr-nav"><i class="bi bi-x-circle"></i></button>
              <ul class="ul">
                  <li><a href="../catalogo/catalogo.php">INICIO</a></li>
-                 <li><a class="pedidos" onclick="pedidos()" id="pedido1">PEDIDOS ONLINE</a></a></li>
+                 <li><a class="nosotros" id="snosotros" href="../pedido/pedido.php">PEDIDOS ONLINE</a></li>
                  <li><a class="nosotros" id="snosotros" href="../sobre_nosotros/snosotros.php">SOBRE NOSOTROS</a></li>
              </ul>
          </nav>
@@ -29,7 +29,7 @@
              <nav class="navse " id="navj">
                  <button id="cerrar" class="ar2"><i class="bi bi-x-lg"></i></button>
                  <ul class="nav-con">
-                     <lia><a href="">Configuración del perfil</a></li>
+                     <lia><a href="../perfil/perfil.php">Configuración del perfil</a></li>
                      <li><a href="../incio.php">Cerrar sesión </a></li>
                  </ul>
              </nav>

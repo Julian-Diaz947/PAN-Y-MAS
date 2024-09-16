@@ -72,7 +72,7 @@ $authHandler->checkAuthentication();
              <button id="crnav" class="cr-nav"><i class="bi bi-x-circle"></i></button>
              <ul class="ul">
                  <li><a href="../catalogo/catalogo.php">INICIO</a></li>
-                 <li><a class="pedidos" onclick="pedidos()" id="pedido1">PEDIDOS ONLINE</a></a></li>
+                 <li><a class="nosotros" id="snosotros" href="../pedido/pedido.php">PEDIDOS ONLINE</a></li>
                  <li><a class="nosotros" id="snosotros" href="../sobre_nosotros/snosotros.php">SOBRE NOSOTROS</a></li>
              </ul>
          </nav>
@@ -81,12 +81,13 @@ $authHandler->checkAuthentication();
              <i class="bi bi-person-circle"></i>
              </button>
              <nav class="navse " id="navj">
-                 <button id="cerrar" class="ar2"><i class="bi bi-x-lg"></i></button>
-                 <ul class="nav-con">
-                     <lia><a href="">Configuración del perfil</a></li>
-                     <li><a href="">Cerrar sesión </a></li>
-                 </ul>
-             </nav>
+                <button id="cerrar" class="ar2"><i class="bi bi-x-lg"></i></button>
+                <ul class="nav-con">
+                    <h3><?php echo htmlspecialchars($_SESSION['cliente']); ?></h3>
+                    <lia><a href="../perfil/perfil.php">Configuración del perfil</a></li>
+                        <li><a href="../config-php/cerrar_sesion.php">Cerrar sesión </a></li>
+                </ul>
+            </nav>
          </article>
        </article>
       </header>

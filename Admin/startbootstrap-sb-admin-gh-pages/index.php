@@ -52,6 +52,8 @@ class AuthenticationHandler {
 $sessionManager = new SessionManager();
 $authHandler = new AuthenticationHandler($sessionManager);
 $authHandler->checkAuthentication();
+
+
 ?>
 
 <!DOCTYPE html>
