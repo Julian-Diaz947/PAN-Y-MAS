@@ -327,6 +327,21 @@ hr {
   border: solid rgb(10, 11, 11) 1px;
   margin: 20px;
 }
+.cformulario{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.formulario{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid gray;
+  height:auto;
+}
 
 @media (min-width: 250px) {
   fondo, .mensajecon, .cancel, .accion  {

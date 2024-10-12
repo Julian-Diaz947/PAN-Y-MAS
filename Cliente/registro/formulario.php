@@ -46,7 +46,7 @@ if(isset($_SESSION['cliente'])){
                     <input type=""id="municipio"name="municipio" placeholder="MUNICIPIO" required >
                     <input type="email"id="" name="correo" placeholder="CORREO ELECTRONICO" required>
                     <input type="password"id="contraseña" name="contrasena" placeholder="CONTRASEÑA" required>
-                    <!--falta codigo parar verificar que juntas contraseñas sean iguales-->
+                   
                     <input type="password" id="vcontraseña" name="rcontrasena" placeholder=" CONFIRMAR CONTRASEÑA" required>
                     <span class="error" id="error_contraseña" ></span>
                    <div class="condiciones">
