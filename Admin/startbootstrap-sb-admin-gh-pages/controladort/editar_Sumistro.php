@@ -102,7 +102,7 @@ $authHandler->checkAuthentication();
       </li>
     </ul>
   </nav>
-  <h1 class="mt-4 text-center">Editar Productos en Proceso</h1>
+  <h1 class="mt-4 text-center">Editar Materias Primas</h1>
   <ol class="breadcrumb mb-4 m-4">
     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
     <li class="breadcrumb-item active"><a href="../Produccion.php">Producción</a></li>
@@ -111,7 +111,7 @@ $authHandler->checkAuthentication();
   <?php
 include "../config-php/conexion-bd.php";
 $id=$_GET['id'];
-$sql=$conexion->query("SELECT * FROM `producto_prcso` WHERE id_prcso =$id");
+$sql=$conexion->query("SELECT * FROM `suministro_s` WHERE id_s =$id");
 ?>
  
-<?php require_once "./editar/editarPrso.php";?> 
+<?php require_once "./editar/editarMateriap.php";?> 

@@ -222,7 +222,7 @@ $authHandler->checkAuthentication();
                             <tbody>
                                 <?php
                                 include "config-php/conexion-bd.php";
-                                include "../startbootstrap-sb-admin-gh-pages/controladort/config-t/eliminarph.php";
+                                include "../startbootstrap-sb-admin-gh-pages/controladort/config_t/eliminarph.php";
                                 $sql = $conexion->query("SELECT 
                                  productos_horneados.id_horneado,
                                  productos_horneados.nombre,
@@ -241,7 +241,7 @@ $authHandler->checkAuthentication();
                                         <a class="btn btn-warning"
                                             href="controladort/editar_ph.php?id=<?= $resultado->id_horneado ?>">Editar</a>
                                         <a onclick="return eliminar()" class="btn btn-danger"
-                                            href="startbootstrap-sb-admin-gh-pages/Produccion.php ?id=<?= $resultado->id_horneado ?>">Eliminar</a>
+                                            href="./Produccion.php ?id=<?= $resultado->id_horneado ?>">Eliminar</a>
                                     </td>
                                     </tr>
                                     <?php
@@ -268,7 +268,7 @@ $authHandler->checkAuthentication();
                                 <tr>
                                     <?php
                                     include "config-php/conexion-bd.php";
-                                    include "controladort/config-t/eliminarprcso.php";
+                                    include "../startbootstrap-sb-admin-gh-pages/controladort/config_t/eliminarprcso.php";
                                     $sql = $conexion->query("SELECT 
                                 producto_prcso.id_prcso,
                                 producto_prcso.nombre,
@@ -290,7 +290,7 @@ $authHandler->checkAuthentication();
                                             <a class="btn btn-warning"
                                                 href="controladort/editar_prcso.php?id=<?= $datos->id_prcso ?>">Editar</a>
                                             <a onclick="return eliminar()" class="btn btn-danger"
-                                                href="../startbootstrap-sb-admin-gh-pages/Produccion.php"?id=<?= $datos->id_prcso ?>">Eliminar</a>
+                                                href="../startbootstrap-sb-admin-gh-pages/Produccion.php?id=<?= $datos->id_prcso ?>">Eliminar</a>
                                         </td>
                                     </tr>
                                     <?php
@@ -317,7 +317,7 @@ $authHandler->checkAuthentication();
                            <tr>
                            <?php
                                 include "config-php/conexion-bd.php";
-                                include "controladort/config-t/eliminarph.php";
+                                include_once "../startbootstrap-sb-admin-gh-pages/controladort/config_t/eliminarMateriaP.php";
                                 $conexion->set_charset("utf8mb4");
                                 $sql = $conexion->query("SELECT 
                                  suministro_s.id_s,
@@ -334,8 +334,10 @@ $authHandler->checkAuthentication();
                                         <td><?= $igual->kilos?></td>
                                         <td><?= $igual->suministro_nmbre_suministro ?></td>
                                 <td>
-                                    <a class="btn btn-warning" href="">Editar</a>
-                                    <a class="btn btn-danger" href="">Eliminar</a>
+                                <a class="btn btn-warning"
+                                                href="controladort/editar_Sumistro.php?id=<?= $igual->id_s ?>">Editar</a>
+                                            <a onclick="return eliminar()" class="btn btn-danger"
+                                                href="../startbootstrap-sb-admin-gh-pages/Produccion.php?id=<?= $igual->id_s ?>">Eliminar</a>
                                 </td>
                             </tr>
                             <?php

@@ -1,64 +1,62 @@
 <?php
-// sessionManager.php
 
-class SessionManager
-{
-  public function __construct()
-  {
-    if (session_status() == PHP_SESSION_NONE) {
-      session_start();
+if (!class_exists('sessionManager')) {
+  class sessionManager {
+    public function __construct() {
+      if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+      }
     }
-  }
 
-  public function isEmployeeLoggedIn()
-  {
-    return isset($_SESSION['empleado']);
-  }
+    public function isEmployeeLoggedIn() {
+      return isset($_SESSION['empleado']);
+    }
 
-  public function destroySession()
-  {
-    session_destroy();
+    public function destroySession() {
+      session_destroy();
+    }
   }
 }
 
 // authenticationHandler.php
 
-class AuthenticationHandler
-{
-  private $sessionManager;
+if (!class_exists('AuthenticationHandler')) {
+  class AuthenticationHandler {
+    private $sessionManager;
 
-  public function __construct(SessionManager $sessionManager)
-  {
-    $this->sessionManager = $sessionManager;
-  }
-
-  public function checkAuthentication()
-  {
-    if (!$this->sessionManager->isEmployeeLoggedIn()) {
-      $this->handleUnauthenticatedAccess();
-      return false;
+    public function __construct(sessionManager $sessionManager)
+    {
+      $this->sessionManager = $sessionManager;
     }
-    return true;
-  }
-
-  private function handleUnauthenticatedAccess()
-  {
-    $this->sessionManager->destroySession();
-    return $this->getRedirectScript();
-  }
-
-  private function getRedirectScript()
-  {
-    return '
-        <script>
-            alert("Por favor inicia sesión");
-            window.location = "login.php";
-        </script>
-        ';
+  
+    public function checkAuthentication()
+    {
+      if (!$this->sessionManager->isEmployeeLoggedIn()) {
+        $this->handleUnauthenticatedAccess();
+        return false;
+      }
+      return true;
+    }
+  
+    private function handleUnauthenticatedAccess()
+    {
+      $this->sessionManager->destroySession();
+      return $this->getRedirectScript();
+    }
+  
+    private function getRedirectScript()
+    {
+      return '
+          <script>
+              alert("Por favor inicia sesión");
+              window.location = "login.php";
+          </script>
+          ';
+    }
   }
 }
 
-$sessionManager = new SessionManager();
+$sessionManager = new sessionManager();
 $authHandler = new AuthenticationHandler($sessionManager);
 $authHandler->checkAuthentication();
 ?>
@@ -118,7 +116,7 @@ $authHandler->checkAuthentication();
   <form method="post" >
     <?php 
     include "../config-php/conexion-bd.php";
-    include "../controladort/config-t/agregarmp.php";
+    include "../controladort/config_t/agregarmp.php";
    
     ?>
   <div class="mb-3">
@@ -131,30 +129,8 @@ $authHandler->checkAuthentication();
   </div>
 
   <label for="exampleInputPassword1" class="form-label">Suministro</label>
+  <input type="text" class="form-control" name="suministro">
   <div class="mb-3">
-    <?php
-   $sql = $conexion->query("SELECT 
-   suministro_s.id_s,
-   suministro_s.kilos,
-   suministro_s.libras,
-   suministro.nmbre_suministro AS suministro_nmbre_suministro
-  FROM suministro_s 
-  INNER JOIN suministro ON suministro_s.suministro_id = suministro.id_suministro
-  WHERE 1");       
-    // Crear el elemento select
-    echo "<select name='suministro'>";
-    echo "<option value=''>Selecciona un Suministro</option>";
-    
-    // Generar las opciones del select con los datos de la base de datos
-    if ($sql=$igual->num_rows > 0) {
-        while($row = $igual->fetch_assoc()) {
-            echo "<option value='" . $row["id_suministro"] . "'>" . $row["nmbre_sumistro"] . "</option>";
-        }
-    } else {
-        echo "<option value=''>No hay opciones disponibles</option>";
-    }
-    echo "</select>";
-    ?>
   </div>
 
   </select>

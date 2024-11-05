@@ -118,7 +118,7 @@ $authHandler->checkAuthentication();
   <form method="post" >
     <?php 
     include "../config-php/conexion-bd.php";
-    include "../controladort/config-t/agregarph.php";
+    include "./config_t/agregarph.php";
     ?>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nombre</label>

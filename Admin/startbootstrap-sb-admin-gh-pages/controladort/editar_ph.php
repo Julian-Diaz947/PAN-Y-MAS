@@ -1,5 +1,5 @@
 <?php
-// sessionManager.php
+
 
 class SessionManager
 {
@@ -20,8 +20,6 @@ class SessionManager
     session_destroy();
   }
 }
-
-// authenticationHandler.php
 
 class AuthenticationHandler
 {
@@ -117,32 +115,5 @@ include "../config-php/conexion-bd.php";
 $id=$_GET['id'];
 $sql=$conexion->query("SELECT * FROM `productos_horneados` WHERE id_horneado =$id");
 ?>
-  <!--formulario-->
- <div class="cformulario">
- <div class="formulario">
- <?php 
-    include "../controladort/config-t/editarph.php";
-    while ($datos=$sql->fetch_object()) {?>
-  <form method="post" >
-    <input type="hidden" name="id<?= $_GET['id']?>" >
-         <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Nombre</label>
-    <input type="text" class="form-control" name="nombre" value="<?=$datos->nombre?>">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Cantidad</label>
-    <input type="text" class="form-control" name="cantidad" value="<?=$datos->cantidad?>" >
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">id empleado</label>
-    <input type="text" class="form-control" name="empleado" value="<?=$datos->empleado_id?>" >
-  </div>
-  <button type="submit" class="btn btn-primary" name="btneditar" value="ok" >Editar</button>
-  
-     <?php   
-    }
-    ?>
  
-</form>
-  </div>
- </div>
+<?php require_once "./editar/editarPh.php";?> 
